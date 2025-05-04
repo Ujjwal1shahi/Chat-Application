@@ -4,6 +4,9 @@ import { TypeAnimation } from "react-type-animation";
 import { FaTwitter, FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 // import { Globe } from "@/components/magicui/globe";
 // import { SmoothCursor } from "@/components/ui/smooth-cursor";
+import { TextAnimate } from "@/components/magicui/text-animate";
+import {NumberTicker} from "@/components/magicui/number-ticker"
+import { useEffect } from "react";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,7 +20,7 @@ function Navbar() {
   return (
     <nav className="fixed top-0 w-full bg-white/80 backdrop-blur z-50 shadow-sm">
       {/* <SmoothCursor/> */}
-      <div  className="container mx-auto px-16 py-4 flex justify-between items-center ">
+      <div className="container mx-auto px-16 py-4 flex justify-between items-center ">
         <div className="text-2xl font-bold text-black">
           <iframe
             className="h-[40px] w-[50px]"
@@ -103,18 +106,20 @@ function Hero() {
     setTimeout(() => setClickedSecond(false), 600); // Reset after animation time
   };
   return (
-    <Element name="home" className="pt-32 pb-20 bg-white  bg-[radial-gradient(circle_at_20%_30%,_#1E1035,_#0D0D1F,_#000000)]">
-      <div className="container h-[57vh] mx-auto px-16 flex flex-col md:flex-row items-center  bg-[radial-gradient(circle_at_20%_30%,_#1E1035,_#0D0D1F,_#000000)] text-white">
+    <Element name="home" className="pt-32 pb-20 bg-white">
+      
+      <div className="container h-[57vh] mx-auto px-16 flex flex-col md:flex-row items-center  bg-white/50">
         <div className="md:w-1/2 mb-10 md:mb-0">
-          <h1 className="text-5xl bg-red-700 h-[100px] md:text-5xl font-bold mb-6 text-black">
-          Connect and collaborate seamlessly
-          </h1>
-          
-          <p className="text-lg py-4 bg-red-200 text-gray-700 mb-8">
+    
+          <TextAnimate  className="text-5xl h-[100px] md:text-5xl font-bold mb-6 text-black" animation="blurInUp" by="word">
+          Connect and collaborate seamlessly.
+          </TextAnimate>
+
+          <p className="text-lg py-4 text-gray-500 mb-8">
             Experience real-time messaging with enterprise-grade security and
             intuitive design.
           </p>
-          <div className="flex gap-6 w-3/5 bg-black/30">
+          <div className="flex gap-6 w-3/5">
             {/* First button */}
             <button
               onClick={handleFirstClick}
@@ -150,7 +155,7 @@ function Hero() {
         </div>
         {/* <Globe className='sm:h-[64vh] sm:w-[34vw] sm:mr-[140px] sm:mt-[20vh] ' /> */}
         <div className="h-1/2 w-1/2 mb-32">
-        <img src="https://a.storyblok.com/f/231922/1726x1040/ba143e3182/chat-ux-design-cover-image.png/m/0x0/" />        
+          <img src="https://a.storyblok.com/f/231922/1726x1040/ba143e3182/chat-ux-design-cover-image.png/m/0x0/" />
         </div>
       </div>
     </Element>
@@ -183,7 +188,7 @@ function Features() {
     },
   ];
   return (
-    <Element name="features" className="py-20 bg-gray-50">
+    <Element name="features" className="py-20 bg-gray-50 ">
       <div className="container mx-auto px-16">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
@@ -234,7 +239,7 @@ function HowItWorks() {
     },
   ];
   return (
-    <Element name="how-it-works" className="py-20 bg-white">
+    <Element name="how-it-works" className="py-20 bg-white ">
       <div className="container mx-auto px-16">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
@@ -248,13 +253,13 @@ function HowItWorks() {
         <div className="flex flex-col md:flex-row gap-8">
           {steps.map((step, idx) => (
             <div key={idx} className="flex-1">
-              <div className="text-5xl font-bold text-gray-200 mb-4">
+              <div className="text-5xl font-bold text-gray-300 mb-4">
                 {step.number}
               </div>
-              <h3 className="text-2xl font-semibold mb-3 text-black">
+              <h3 className="text-2xl font-semibold mb-3 text-white">
                 {step.title}
               </h3>
-              <p className="text-gray-700">{step.description}</p>
+              <p className="text-gray-500">{step.description}</p>
             </div>
           ))}
         </div>
@@ -324,7 +329,7 @@ function Pricing() {
           {plans.map((plan, idx) => (
             <div
               key={idx}
-              className={`bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl ${
+              className={`bg-white/30 rounded-xl border-2 shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl ${
                 plan.popular
                   ? "border-2 border-black transform -translate-y-2"
                   : ""
@@ -364,8 +369,8 @@ function Pricing() {
                 <button
                   className={`w-full py-3 rounded-lg font-medium ${
                     plan.popular
-                      ? "bg-black hover:bg-gray-900 text-white"
-                      : "bg-gray-100 hover:bg-gray-200 text-black"
+                      ? "bg-black/80 hover:bg-gray-900 text-white"
+                      : "bg-gray-100 hover:bg-gray-200 text-black/80"
                   } transition-colors`}
                 >
                   {plan.cta}
@@ -381,7 +386,7 @@ function Pricing() {
 
 function Contact() {
   return (
-    <Element name="contact" className="py-20 bg-white">
+    <Element name="contact" className="py-20 bg-white/20">
       <div className="container mx-auto px-16">
         <div className="bg-gradient-to-r from-black via-gray-900 to-gray-800 rounded-2xl p-12 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
@@ -417,7 +422,7 @@ function Footer() {
     twitter: "https://twitter.com/your_username",
     facebook: "https://facebook.com/your_username",
     instagram: "https://instagram.com/ujjwal._.shahi",
-    linkedin: "https://linkedin.com/in/your_username",
+    linkedin: "https://www.linkedin.com/in/ujjwal-shahi-0956b22a0/",
   };
 
   return (
@@ -495,17 +500,65 @@ function Footer() {
 }
 
 export default function Landing() {
+  const [loading, setLoading] = useState(true);      // Controls if loader is visible
+  const [fadeOut, setFadeOut] = useState(false);     // Controls fade-out animation
+
+  // Duration for your counting animation in ms (adjust to match your NumberTicker)
+  const COUNT_DURATION = 3000;
+  // Duration for fade transition in ms (should match CSS below)
+  const FADE_DURATION = 600;
+
+  useEffect(() => {
+    // After counting is done, start fade out
+    const timer = setTimeout(() => setFadeOut(true), COUNT_DURATION);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    // After fade out is done, hide loader
+    if (fadeOut) {
+      const timer = setTimeout(() => setLoading(false), FADE_DURATION);
+      return () => clearTimeout(timer);
+    }
+  }, [fadeOut]);
+
   return (
-    <div className="font-sans bg-white">
-      <Navbar />
-      <main>
-        <Hero />
-        <Features />
-        <HowItWorks />
-        <Pricing />
-        <Contact />
-      </main>
-      <Footer />
+    <div className="font-sans bg-white relative">
+      {/* Loader overlay with smooth fade out */}
+      {loading && (
+        <div
+          className={`fixed inset-0 flex items-center justify-center bg-black z-50 transition-opacity duration-600
+            ${fadeOut ? "opacity-0 pointer-events-none" : "opacity-100"}
+          `}
+          style={{
+            transition: `opacity ${FADE_DURATION}ms cubic-bezier(0.4,0,0.2,1)`
+          }}
+        >
+          <NumberTicker
+            value={100}
+            direction="up"
+            className="whitespace-pre-wrap text-8xl font-medium tracking-tighter text-white"
+          />
+        </div>
+      )}
+
+      {/* Main content with fade in */}
+      <div
+        className={`transition-opacity duration-600 ${loading ? "opacity-0" : "opacity-100"}`}
+        style={{
+          transition: `opacity ${FADE_DURATION}ms cubic-bezier(0.4,0,0.2,1)`
+        }}
+      >
+        <Navbar />
+        <main>
+          <Hero />
+          <Features />
+          <HowItWorks />
+          <Pricing />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }

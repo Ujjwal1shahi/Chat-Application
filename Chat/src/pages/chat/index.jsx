@@ -8,9 +8,11 @@ function Chat() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    toast("Please setup profile to continue.");
-    navigate("/profile");
-  } , [userInfo, navigate]);
+    if (userInfo && !userInfo.profileSetup) {
+      toast("Please setup profile to continue.");
+      navigate("/profile");
+    }
+  } , [userInfo]);
 
   return (
     <div>

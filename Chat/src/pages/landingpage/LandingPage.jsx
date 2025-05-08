@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Link, Element } from "react-scroll";
-import { TypeAnimation } from "react-type-animation";
 import { FaTwitter, FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
-// import { Globe } from "@/components/magicui/globe";
-// import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import { TextAnimate } from "@/components/magicui/text-animate";
 import {NumberTicker} from "@/components/magicui/number-ticker"
 import { useEffect } from "react";
@@ -18,13 +15,14 @@ function Navbar() {
     { name: "Contact", to: "contact" },
   ];
   return (
-    <nav className="fixed top-0 w-full bg-white/80 backdrop-blur z-50 shadow-sm">
+    <nav className="fixed top-0 w-full backdrop-blur-md bg-white/30 border-b border-white/5 text-white z-50">
       {/* <SmoothCursor/> */}
-      <div className="container mx-auto px-16 py-4 flex justify-between items-center ">
-        <div className="text-2xl font-bold text-black">
+      <div className="container mx-auto px-16 py-3 flex justify-between items-center ">
+        <div className="text-2xl font-bold">
           <iframe
-            className="h-[40px] w-[50px]"
-            src="https://lottie.host/embed/dfb46be1-cf75-4491-9d3c-629c2132cb95/E2mYyXWidA.lottie"
+            className="h-[50px] w-[50px]"
+            // src="https://lottie.host/embed/dfb46be1-cf75-4491-9d3c-629c2132cb95/E2mYyXWidA.lottie" 
+            src="https://lottie.host/embed/a0671975-89b5-4b03-b968-5ec82a3c33f6/ttutTXdhhg.lottie"
           ></iframe>
         </div>
         <div className="hidden md:flex space-x-8">
@@ -35,7 +33,7 @@ function Navbar() {
               spy={true}
               smooth={true}
               duration={500}
-              className="cursor-pointer hover:text-gray-900 transition-colors"
+              className="cursor-pointer text-[16px] hover:text-gray-400 transition-colors"
               activeClass="text-black font-semibold"
             >
               {item.name}
@@ -106,16 +104,16 @@ function Hero() {
     setTimeout(() => setClickedSecond(false), 600); // Reset after animation time
   };
   return (
-    <Element name="home" className="pt-32 pb-20 bg-white">
+    <Element name="home" className="pt-32 pb-2 bg-gradient-to-br from-[#0d1117] to-[#161b22]">
       
-      <div className="container h-[57vh] mx-auto px-16 flex flex-col md:flex-row items-center  bg-white/50">
+      <div className="container h-[66vh] mx-auto px-16 flex flex-col md:flex-row items-center">
         <div className="md:w-1/2 mb-10 md:mb-0">
     
-          <TextAnimate  className="text-5xl h-[100px] md:text-5xl font-bold mb-6 text-black" animation="blurInUp" by="word">
+          <TextAnimate  className="text-5xl h-[100px] md:text-5xl font-bold mb-6 text-white" animation="blurInUp" by="word">
           Connect and collaborate seamlessly.
           </TextAnimate>
 
-          <p className="text-lg py-4 text-gray-500 mb-8">
+          <p className="text-lg py-4 text-gray-400 mb-8">
             Experience real-time messaging with enterprise-grade security and
             intuitive design.
           </p>
@@ -155,7 +153,8 @@ function Hero() {
         </div>
         {/* <Globe className='sm:h-[64vh] sm:w-[34vw] sm:mr-[140px] sm:mt-[20vh] ' /> */}
         <div className="h-1/2 w-1/2 mb-32">
-          <img src="https://a.storyblok.com/f/231922/1726x1040/ba143e3182/chat-ux-design-cover-image.png/m/0x0/" />
+          <img src="https://static.vecteezy.com/system/resources/previews/009/315/269/non_2x/3d-social-media-with-video-and-photo-gallery-platform-online-social-communication-applications-concept-emoji-webpage-search-icons-chat-with-smartphone-background-image-3d-render-free-png.png" />
+          {/* <iframe src="https://lottie.host/embed/09a9dbf1-c6ae-4458-9681-9c75eea696a6/Nm3APf3oaX.lottie"></iframe> */}
         </div>
       </div>
     </Element>
@@ -188,13 +187,13 @@ function Features() {
     },
   ];
   return (
-    <Element name="features" className="py-20 bg-gray-50 ">
-      <div className="container mx-auto px-16">
+    <Element name="features" className="py-20  bg-gradient-to-br from-[#0d1117] to-[#161b22]">
+      <div className="container mx-auto px-16 bg-gradient-to-br from-[#0d1117] to-[#161b22]">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             Why Choose Our Chat App?
           </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Designed with users in mind, our platform delivers the features you
             need with the simplicity you want.
           </p>
@@ -203,7 +202,7 @@ function Features() {
           {features.map((feature, idx) => (
             <div
               key={idx}
-              className="bg-white p-8 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl group"
+              className="bg-gray-500 p-8 rounded-xl shadow-lg shadow-white/30 transition-all duration-300 hover:shadow-[0_0_15px_3px_rgba(255,255,255,0.3)]  group"
             >
               <div className="text-4xl mb-4 transition-transform">
                 {feature.icon}
@@ -239,13 +238,13 @@ function HowItWorks() {
     },
   ];
   return (
-    <Element name="how-it-works" className="py-20 bg-white ">
+    <Element name="how-it-works" className="py-20 bg-gradient-to-br from-[#0d1117] to-[#161b22]">
       <div className="container mx-auto px-16">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             Simple to Get Started
           </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Our streamlined process gets you communicating in minutes, not
             hours.
           </p>
@@ -314,13 +313,13 @@ function Pricing() {
     },
   ];
   return (
-    <Element name="pricing" className="py-20 bg-gray-50">
+    <Element name="pricing" className="py-20 bg-gradient-to-br from-[#0d1117] to-[#161b22]">
       <div className="container mx-auto px-16">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             Simple, Transparent Pricing
           </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Choose the plan that works for you. All plans include a 14-day
             trial.
           </p>
@@ -329,9 +328,9 @@ function Pricing() {
           {plans.map((plan, idx) => (
             <div
               key={idx}
-              className={`bg-white/30 rounded-xl border-2 shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl ${
+              className={`bg-white/30 rounded-xl border-2 shadow-lg shadow-white/40 overflow-hidden transition-all duration-300 hover:shadow-[0_0_15px_3px_rgba(255,255,255,0.4)] ${
                 plan.popular
-                  ? "border-2 border-black transform -translate-y-2"
+                  ? "border-2 border-white/50 transform -translate-y-2"
                   : ""
               }`}
             >
@@ -369,8 +368,8 @@ function Pricing() {
                 <button
                   className={`w-full py-3 rounded-lg font-medium ${
                     plan.popular
-                      ? "bg-black/80 hover:bg-gray-900 text-white"
-                      : "bg-gray-100 hover:bg-gray-200 text-black/80"
+                      ? "bg-black/80 hover:bg-gray-800 text-white"
+                      : "bg-gray-100 hover:bg-gray-300 text-black"
                   } transition-colors`}
                 >
                   {plan.cta}
@@ -386,7 +385,7 @@ function Pricing() {
 
 function Contact() {
   return (
-    <Element name="contact" className="py-20 bg-white/20">
+    <Element name="contact" className="py-20 bg-gradient-to-br from-[#0d1117] to-[#161b22]">
       <div className="container mx-auto px-16">
         <div className="bg-gradient-to-r from-black via-gray-900 to-gray-800 rounded-2xl p-12 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
@@ -523,7 +522,7 @@ export default function Landing() {
   }, [fadeOut]);
 
   return (
-    <div className="font-sans bg-white relative">
+    <div className="font-sans bg-black relative">
       {/* Loader overlay with smooth fade out */}
       {loading && (
         <div

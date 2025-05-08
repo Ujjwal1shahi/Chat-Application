@@ -95,18 +95,20 @@ function Profile() {
   
   return (
     // https://w0.peakpx.com/wallpaper/647/331/HD-wallpaper-anonymous-mask-profile-dark.jpg
-    <div className="bg-[#000000] h-[100vh] flex items-center justify-center flex-col gap-10">
-      <div className="flex flex-col gap-10 w-[80vw] md:w-max">
-        <div onClick={handleNavigate}>
-          <IoArrowBack className="text-4xl lg:text-6xl text-white/90 cursor-pointer" />
+    <div className="bg-[#1c1e2b] h-[100vh] flex items-center justify-center flex-col gap-10">
+      <div className="flex flex-col gap-10 w-[80vw] md:w-max border-2 p-12 border-white/10 text-opacity-90 shadow-2xl rounded-3xl bg-[#1c1e2b] lg:w-[60vw] xl:w-[50vw] 2xl:w-[40vw]">
+      <h1 className="flex items-center justify-center text-white/60 text-lg">{userInfo?.profileSetup ? "Profile Status" : "Fill Your Profile Details"}</h1>
+      <div className="w-full h-px bg-white/20" />
+        <div onClick={handleNavigate} className="w-10">
+          <IoArrowBack className="text-3xl lg:text-4xl text-white/90 cursor-pointer" />
         </div>
         <div className="grid grid-cols-2">
           <div
-            className="h-full w-32 md:w-48 md:h-48 relative flex items-center justify-center"
+            className="h-full w-32 sm:w-48 sm:h-48 relative flex items-center justify-center"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
-            <Avatar className="h-32 w-32 md:w-48 md:h-48 rounded-full overflow-hidden">
+            <Avatar className="h-28 w-28 sm:h-40 sm:w-40 rounded-full overflow-hidden">
               {image ? (
                 <AvatarImage
                   src={image}
@@ -115,7 +117,7 @@ function Profile() {
                 />
               ) : (
                 <div
-                  className={`uppercase h-32 w-32 md:w-48 md:48 text-5xl border-[1px] flex items-center justify-center rounded-full ${getColor(
+                  className={`uppercase h-28 w-28  sm:w-40 sm:h-40 text-6xl border-[3px] flex items-center justify-center rounded-full ${getColor(
                     selectedColor
                   )}`}
                 >
@@ -126,7 +128,7 @@ function Profile() {
               )}
             </Avatar>
             {hovered && (
-              <div onClick={image ? handleDeleteImage : handleFileInputClick} className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-full cursor-pointer">
+              <div onClick={image ? handleDeleteImage : handleFileInputClick} className="absolute w-28 h-28 sm:w-40 sm:h-40 overflow-hidden flex items-center justify-center bg-black/50 rounded-full cursor-pointer">
                 {image ? (
                   <FaTrash className="text-white text-3xl cursor-pointer" />
                 ) : (
@@ -134,7 +136,7 @@ function Profile() {
                 )}
               </div>
             )}
-            <input type='text' ref={fileInputRef} className="hidden" onChange={handleImageChange} name="profile-image"/>
+            <input type='text' ref={fileInputRef} className="hidden" onChange={handleImageChange} name="profile-image" accept=".png .jpg .jpeg .svg .webp"/>
           </div>
 
           <div className="flex min-w-32 md:min-w-64 flex-col gap-5 text-white items-center justify-center">
@@ -168,10 +170,10 @@ function Profile() {
             <div className="w-full flex gap-5">
               {colors.map((colors, index) => (
                 <div
-                  className={`${colors} h-8 w-8 rounded-full cursor-pointer transition-all duration-200 
+                  className={`${colors} h-8 w-8 rounded-full border-[2px] cursor-pointer transition-all duration-200 
                  ${
                    selectedColor === index
-                     ? "outline outline-white/70 outline-3"
+                     ? "outline outline-white/80 outline-3"
                      : " "
                  } `}
                   key={index}
@@ -183,7 +185,7 @@ function Profile() {
         </div>
         <div className="w-full">
           <Button
-            className="h-16 w-full bg-purple-700 hover:bg-purple-900 transition-all duration-300"
+            className="h-16 sm:h-14 w-full sm:text-md bg-purple-700 hover:bg-purple-900 transition-all duration-300"
             onClick={saveChanges}
           >
             Save Changes

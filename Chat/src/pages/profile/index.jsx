@@ -10,8 +10,9 @@ import { Input } from "@/components/ui/input";
 import { colors } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { UPDATE_PROFILE_ROUTE } from "@/utils/constants";
+import { ADD_PROFILE_IMAGE_ROUTE, HOST, UPDATE_PROFILE_ROUTE, REMOVE_PROFILE_IMAGE_ROUTE } from "@/utils/constants";
 import { apiClient } from "@/lib/api-client";
+
 
 
 function Profile() {
@@ -31,10 +32,13 @@ function Profile() {
     if (userInfo) {
       setFirstName(userInfo.firstName);
       setLastName(userInfo.lastName);
-      // setImage(userInfo.image);
       setSelectedColor(userInfo.color);      
     }
-  }, [userInfo])
+
+    if(userInfo.image) {
+      setImage(`${HOST}/${userInfo.image}`);
+    }
+  }, [userInfo]);
   
   const validateProfile = () => {
     if(!firstName) {
@@ -89,13 +93,49 @@ function Profile() {
     fileInputRef.current.click();
   }
 
-  const handleImageChange = async (e) => {}
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    console.log({file});
 
-  const handleDeleteImage = async () => {}
+    if(file){
+      const formData = new FormData();
+      formData.append("profile-image", file);
+      const response = await apiClient.post(ADD_PROFILE_IMAGE_ROUTE, formData, {
+        withCredentials: true,
+      });
+
+      if(response.status === 200 && response.data.image){
+        setUserInfo({...userInfo, image: response.data.image});
+        toast.success("Profile image updated successfully.");
+      }
+      // const reader = new FileReader();
+      // reader.onload= (e) => {
+      //   setImage(reader.result);
+      // };
+      // reader.readAsDataURL(file);
+    }
+  };
+
+  const handleDeleteImage = async () => {
+    try{
+      const response = await apiClient.delete(REMOVE_PROFILE_IMAGE_ROUTE, {
+        withCredentials: true,
+      });
+
+      if(response.status === 200){
+        setUserInfo({...userInfo, image: null});
+        toast.success("Image removed successfully.");
+        setImage(null);
+      }
+    }catch(error){
+      console.log(error);
+      toast.error("An error occurred while removing image.");
+    }
+  }
   
   return (
     // https://w0.peakpx.com/wallpaper/647/331/HD-wallpaper-anonymous-mask-profile-dark.jpg
-    <div className="bg-[#1c1e2b] h-[100vh] flex items-center justify-center flex-col gap-10">
+    <div className=" bg-[#1c1e2b] h-[100vh] flex items-center justify-center flex-col gap-10">
       <div className="flex flex-col gap-10 w-[80vw] md:w-max border-2 p-12 border-white/10 text-opacity-90 shadow-2xl rounded-3xl bg-[#1c1e2b] lg:w-[60vw] xl:w-[50vw] 2xl:w-[40vw]">
       <h1 className="flex items-center justify-center text-white/60 text-lg">{userInfo?.profileSetup ? "Profile Status" : "Fill Your Profile Details"}</h1>
       <div className="w-full h-px bg-white/20" />
@@ -117,7 +157,7 @@ function Profile() {
                 />
               ) : (
                 <div
-                  className={`uppercase h-28 w-28  sm:w-40 sm:h-40 text-6xl border-[3px] flex items-center justify-center rounded-full ${getColor(
+                  className={`uppercase h-28 w-28  sm:w-40 sm:h-40 text-5xl sm:text-6xl border-[3px] flex items-center justify-center rounded-full ${getColor(
                     selectedColor
                   )}`}
                 >
@@ -136,7 +176,7 @@ function Profile() {
                 )}
               </div>
             )}
-            <input type='text' ref={fileInputRef} className="hidden" onChange={handleImageChange} name="profile-image" accept=".png .jpg .jpeg .svg .webp"/>
+            <input type='file' ref={fileInputRef} className="hidden" onChange={handleImageChange} name="profile-image" accept=".png, .jpg, .jpeg, .svg, .webp"/>
           </div>
 
           <div className="flex min-w-32 md:min-w-64 flex-col gap-5 text-white items-center justify-center">

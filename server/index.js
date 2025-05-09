@@ -14,7 +14,10 @@ app.use(cors({
      origin: [process.env.ORIGIN],
      methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
      credentials: true,
-}));
+})
+);
+
+app.use("/uploads/profiles", express.static("uploads/profiles"));
 
 app.use(cookieParser());
 app.use(express.json());

@@ -4,6 +4,8 @@ import { FaTwitter, FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { TextAnimate } from "@/components/magicui/text-animate";
 import {NumberTicker} from "@/components/magicui/number-ticker"
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -93,15 +95,20 @@ function Navbar() {
 function Hero() {
   const [clickedFirst, setClickedFirst] = useState(false);
   const [clickedSecond, setClickedSecond] = useState(false);
+  const navigate = useNavigate();
 
   const handleFirstClick = () => {
     setClickedFirst(true);
     setTimeout(() => setClickedFirst(false), 600); // Reset after animation time
+
+    navigate("/auth/signup"); // Redirect to signup page
   };
 
   const handleSecondClick = () => {
     setClickedSecond(true);
     setTimeout(() => setClickedSecond(false), 600); // Reset after animation time
+
+    navigate("/main");
   };
   return (
     <Element name="home" className="pt-32 pb-2 bg-gradient-to-br from-[#0d1117] to-[#161b22]">
@@ -109,7 +116,7 @@ function Hero() {
       <div className="container h-[66vh] mx-auto px-16 flex flex-col md:flex-row items-center">
         <div className="md:w-1/2 mb-10 md:mb-0">
     
-          <TextAnimate  className="text-5xl h-[100px] md:text-5xl font-bold mb-6 text-white" animation="blurInUp" by="word">
+          <TextAnimate  className="text-5xl h-[100px] md:text-5xl font-bold mb-6 text-white" animation="slideUp" by="word">
           Connect and collaborate seamlessly.
           </TextAnimate>
 
@@ -131,7 +138,8 @@ function Hero() {
               ></span>
 
               {/* Button Text */}
-              <span className="relative z-10">Get Started Free</span>
+              
+              <span className="relative z-10" >Get Started Free</span>
             </button>
 
             {/* Second button */}
@@ -202,7 +210,7 @@ function Features() {
           {features.map((feature, idx) => (
             <div
               key={idx}
-              className="bg-gray-500 p-8 rounded-xl shadow-lg shadow-white/30 transition-all duration-300 hover:shadow-[0_0_15px_3px_rgba(255,255,255,0.3)]  group"
+              className="bg-gray-500 p-8 rounded-xl shadow-lg shadow-white/30 transition-all duration-300 hover:shadow-[0_0_12px_3px_rgba(255,255,255,0.6)]  group"
             >
               <div className="text-4xl mb-4 transition-transform">
                 {feature.icon}

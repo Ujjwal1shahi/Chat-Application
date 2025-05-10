@@ -17,7 +17,7 @@ function Navbar() {
     { name: "Contact", to: "contact" },
   ];
   return (
-    <nav className="fixed top-0 w-full backdrop-blur-md bg-white/30 border-b border-white/5 text-white z-50">
+    <nav className="fixed top-0 w-full backdrop-blur-md bg-white/30 border-b border-white/5 text-white z-50 ">
       {/* <SmoothCursor/> */}
       <div className="container mx-auto px-16 py-3 flex justify-between items-center ">
         <div className="text-2xl font-bold">

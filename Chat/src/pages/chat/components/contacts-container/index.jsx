@@ -1,4 +1,5 @@
 import React from "react";
+import ProfileInfo from "./components/profile-info";
 
 
 function ContactsContainer() {
@@ -21,7 +22,7 @@ function ContactsContainer() {
           <Title text="Channels" />
         </div>
       </div>
-      
+      <ProfileInfo />
     </div>
   );
 }

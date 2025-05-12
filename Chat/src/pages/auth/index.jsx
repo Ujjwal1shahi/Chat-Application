@@ -63,6 +63,8 @@ function Auth() {
       );
       if(response.data.user.id){
         setUserInfo(response.data.user);
+        setEmail('');
+        setPassword('');
         if(response.data.user.profileSetup) navigate("/chat");
         else navigate("/profile");
       }
@@ -80,6 +82,8 @@ function Auth() {
       );
       if(response.status === 201){
         setUserInfo(response.data.user);
+        setEmail('');
+        setPassword('');
         navigate("/profile");
       }
       console.log({ response });

@@ -134,9 +134,8 @@ function Profile() {
   }
   
   return (
-    // https://w0.peakpx.com/wallpaper/647/331/HD-wallpaper-anonymous-mask-profile-dark.jpg
-    <div className=" bg-[#1c1e2b] h-[100vh] flex items-center justify-center flex-col gap-10">
-      <div className="flex flex-col gap-10 w-[80vw] md:w-max border-2 p-12 border-white/10 text-opacity-90 shadow-2xl rounded-3xl bg-[#1c1e2b] lg:w-[60vw] xl:w-[50vw] 2xl:w-[40vw]">
+    <div className=" bg-[#1c1e2b] h-[100vh] flex items-center justify-center flex-col gap-10 bg-cover">
+      <div className="flex flex-col gap-10 w-[80vw] md:w-max border-2 p-12 border-white/10 text-opacity-90 shadow-2xl rounded-3xl bg-gray-900/50 backdrop-blur-sm lg:w-[60vw] xl:w-[50vw] 2xl:w-[40vw]">
       <h1 className="flex items-center justify-center text-white/60 text-lg">{userInfo?.profileSetup ? "Profile Status" : "Fill Your Profile Details"}</h1>
       <div className="w-full h-px bg-white/20" />
         <div onClick={handleNavigate} className="w-10">

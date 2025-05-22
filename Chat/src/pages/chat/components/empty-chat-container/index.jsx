@@ -1,7 +1,7 @@
 import { animationDefaultOptions } from "@/lib/utils";
 import React from "react";
 import Lottie from "react-lottie";
-import "@fontsource/pacifico";
+
 
 function EmptyChatContainer() {
   return (

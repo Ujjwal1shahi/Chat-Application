@@ -4,6 +4,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import mongoose from 'mongoose'
 import authRoutes from './routes/AuthRoutes.js'
+import contactRoutes from './routes/ContactRoutes.js'
 
 dotenv.config();
 const app = express();
@@ -23,6 +24,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/contacts", contactRoutes)
 
 const server = app.listen(port,() => {
      console.log(`Sever is running at http://localhost:${port}`);

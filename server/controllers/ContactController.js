@@ -13,12 +13,12 @@ export const searchContacts = async (request, response, next) => {
             "\\$&"
         );
 
-        const negex = new RegExp(sanitizedSearchTerm, 'i');
+        const regex = new RegExp(sanitizedSearchTerm, 'i');
 
         const contacts = await User.find({
             $and : [{_id: {$ne: request.userId}},
                 {
-                    $or: [{firstName: negex}, {lastName: negex}, {email: negex}],
+                    $or: [{firstName: regex}, {lastName: regex}, {email: regex}],
                 },
             ],
         });

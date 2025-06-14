@@ -21,11 +21,7 @@ function Navbar() {
       {/* <SmoothCursor/> */}
       <div className="container mx-auto px-16 py-3 flex justify-between items-center ">
         <div className="text-2xl font-bold">
-          <iframe
-            className="h-[50px] w-[50px]"
-            // src="https://lottie.host/embed/dfb46be1-cf75-4491-9d3c-629c2132cb95/E2mYyXWidA.lottie" 
-            src="https://lottie.host/embed/a0671975-89b5-4b03-b968-5ec82a3c33f6/ttutTXdhhg.lottie"
-          ></iframe>
+         <iframe className="h-[50px] w-[50px]" src="https://lottie.host/embed/d1d48426-fa20-40aa-aead-d653ddbde98f/3jVGJvNmOA.lottie"></iframe>
         </div>
         <div className="hidden md:flex space-x-8">
           {navItems.map((item) => (

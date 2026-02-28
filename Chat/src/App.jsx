@@ -63,9 +63,11 @@ function App() {
     <>
       <BrowserRouter>
       <Routes>
-        <Route path='/main' element={<Landing/>} />
         <Route path='/auth' element={
-          <AuthRoute><Auth/></AuthRoute>} />
+          <AuthRoute><Auth/></AuthRoute>
+          }
+        />
+        <Route path='/main' element={<Landing/>} />
         <Route path='/chat' element={<PrivateRoute><Chat/></PrivateRoute>} />
         <Route path='/profile' element={<PrivateRoute><Profile/></PrivateRoute>} />
         <Route path='*' element={<Navigate to="/auth" />} />

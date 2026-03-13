@@ -1,49 +1,68 @@
-import {Children, createContext, useContext, useEffect, useRef} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useAppStore } from "../store";
 import { HOST } from "../utils/constants";
-import {io} from "socket.io-client"
+import { io } from "socket.io-client";
 
 const SocketContext = createContext(null);
 
 export const useSocket = () => {
-    return useContext(SocketContext);
+  return useContext(SocketContext);
 };
 
-export const SocketProvider = ({children}) => {
-    const socket = useRef();
-    const {userInfo} = useAppStore();
+export const SocketProvider = ({ children }) => {
+  const [socket, setSocket] = useState(null);
+  const { userInfo } = useAppStore();
+  const getUserId = (value) =>
+    typeof value === "string" ? value : value?._id || value?.id;
 
-    useEffect(() => {
-        if(userInfo){
-            socket.current = io(HOST, {
-                withCredentials: true,
-                query: {userId: userInfo.id},
-            });
+  useEffect(() => {
+    if (!userInfo) return;
 
-            socket.current.on("connect", () => {
-                console.log("Connected to socket server");
-            });
+    const userId = getUserId(userInfo);
+    if (!userId) {
+      setSocket(null);
+      return;
+    }
 
-            const handleRecieveMessage = (message) => {
-                const {selectedChatData, selectedChatType, addMessage} = useAppStore();
+    const newSocket = io(HOST, {
+      withCredentials: true,
+      query: { userId },
+    });
 
-                if(selectedChatType !== undefined && (selectedChatData._id === message.sender._id || selectedChatData._id === message.recipient._id)){
-                    console.log("mess rcv : ", message);
-                    addMessage(message);
-                }
-            };
+    const onMessageReceived = (message) => {
+      const { selectedChatData, selectedChatType, addMessage } =
+        useAppStore.getState();
+      if (selectedChatType !== "contact") return;
 
-            socket.current.on("recieveMessage", handleRecieveMessage);
+      const activeChatId = getUserId(selectedChatData);
+      if (!activeChatId) return;
 
-            return () => {
-                socket.current.disconnect();
-            };
-        }
-    }, [userInfo]);
+      const senderId = getUserId(message?.sender);
+      const recipientId = getUserId(message?.recipient);
 
-    return (
-        <SocketContext.Provider value={socket.current}>
-            {children}
-        </SocketContext.Provider>
-    )
+      if (activeChatId === senderId || activeChatId === recipientId) {
+        addMessage(message);
+      }
+    };
+
+    newSocket.on("connect", () => {
+      console.log("Connected to socket server");
+    });
+
+    newSocket.on("receiveMessage", onMessageReceived);
+
+    setSocket(newSocket);
+
+    return () => {
+      newSocket.off("receiveMessage", onMessageReceived);
+      newSocket.disconnect();
+      setSocket(null);
+    };
+  }, [userInfo]);
+
+  return (
+    <SocketContext.Provider value={socket}>
+      {children}
+    </SocketContext.Provider>
+  );
 };

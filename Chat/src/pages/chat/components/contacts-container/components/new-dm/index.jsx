@@ -15,8 +15,8 @@ import {
 import { FaPlus } from "react-icons/fa";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import Lottie from "react-lottie";
-import { animationDefaultOptions, getColor } from "@/lib/utils";
+import Lottie from "lottie-react";
+import { animationData, getColor } from "@/lib/utils";
 import { apiClient } from "@/lib/api-client";
 import { SEARCH_CONTACTS_ROUTES } from "@/utils/constants";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -298,10 +298,9 @@ const NewDm = () => {
               <div className="flex flex-1 items-center justify-center py-4">
                 <div className="flex flex-col items-center text-center gap-4">
                   <Lottie
-                    isClickToPauseDisabled
-                    height={130}
-                    width={130}
-                    options={animationDefaultOptions}
+                    animationData={animationData}
+                    loop={true}
+                    style={{ height: 130, width: 130 }}
                   />
                   <div>
                     <h3 className="font-bold text-lg text-white mb-1" style={ff}>

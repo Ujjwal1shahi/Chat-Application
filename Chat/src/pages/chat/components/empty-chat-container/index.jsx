@@ -1,6 +1,5 @@
 import { animationDefaultOptions } from "@/lib/utils";
 import React from "react";
-import Lottie from "react-lottie";
 
 // ─── NexChat Theme Tokens ─────────────────────────────────────────────────────
 const primaryGrad =

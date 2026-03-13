@@ -193,15 +193,6 @@ function Auth() {
                 </span>
               </div>
 
-              {/* Lottie welcome animation */}
-              <div className="flex items-center justify-center mb-2">
-                <iframe
-                  src="https://lottie.host/embed/08efe733-4fda-476b-b366-2e8106193557/mOjAWqt0YN.lottie"
-                  className="w-[120px] h-[120px]"
-                  style={{ border: "none", background: "transparent" }}
-                />
-              </div>
-
               <h1 className="text-3xl font-extrabold text-white mb-1" style={ff}>
                 Welcome back
               </h1>
@@ -347,13 +338,6 @@ function Auth() {
                 background: "radial-gradient(circle, rgba(167,139,250,0.12) 0%, transparent 70%)",
                 filter: "blur(30px)",
               }}
-            />
-
-            {/* Lottie chat animation */}
-            <iframe
-              className="relative z-10"
-              style={{ width: "320px", height: "320px", border: "none", background: "transparent" }}
-              src="https://lottie.host/embed/db690ea4-6173-4dd5-a94d-a0032c365c49/iPPHZaDAdX.lottie"
             />
 
             {/* Feature pills */}

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 // import './App.css'
-import {Button} from './components/ui/button'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Auth from './pages/auth'
 import Profile from './pages/profile'
@@ -48,7 +47,10 @@ function App() {
       }
     };
 
-    if(!userInfo){
+    const path = window.location.pathname;
+    const isPublicRoute = path === "/auth" || path === "/main";
+
+    if(!userInfo && !isPublicRoute){
       getUserData();
     }else{
       setLoading(false);

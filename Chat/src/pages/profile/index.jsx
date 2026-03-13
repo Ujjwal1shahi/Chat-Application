@@ -72,12 +72,10 @@ function Profile() {
 
   useEffect(() => {
     if (userInfo) {
-      setFirstName(userInfo.firstName);
-      setLastName(userInfo.lastName);
-      setSelectedColor(userInfo.color);
-    }
-    if (userInfo.image) {
-      setImage(`${HOST}/${userInfo.image}`);
+      setFirstName(userInfo.firstName ?? "");
+      setLastName(userInfo.lastName ?? "");
+      setSelectedColor(userInfo.color ?? 0);
+      setImage(userInfo.image ? `${HOST}/${userInfo.image}` : null);
     }
   }, [userInfo]);
 
@@ -306,7 +304,7 @@ function Profile() {
                     >
                       {firstName
                         ? firstName.split("").shift()
-                        : userInfo.email.split("").shift()}
+                        : (userInfo?.email || "").split("").shift()}
                     </div>
                   )}
                 </Avatar>
@@ -358,7 +356,7 @@ function Profile() {
                   placeholder="Email"
                   type="email"
                   disabled
-                  value={userInfo.email}
+                  value={userInfo?.email ?? ""}
                   className="nexchat-input w-full"
                 />
               </div>
